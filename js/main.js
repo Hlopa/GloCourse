@@ -1,9 +1,8 @@
-let money,
-    addExpenses,
-    deposit,
-    mission,
-    period;
+let money = 500,
+    income = 'стипендия',
+    addExpenses = 'учеба, проездной, коммуналка',
+    deposit = true,
+    mission = 7000,
+    period = 6;
 
-alert("Вы проходите курс по JS");
 
-console.log("Какой-то текст");
