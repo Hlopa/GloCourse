@@ -4,8 +4,8 @@ let money = 500,
     deposit = true,
     mission = 7000,
     period = 6,
-    budgetDay = money/30;
-  
+    budgetDay = money / 30;
+
 console.log(typeof money);
 console.log(typeof income);
 console.log(typeof deposit);
@@ -20,4 +20,4 @@ let arrAddExpenses = lowAddExpenses.split(", ");
 console.log(lowAddExpenses);
 console.log(arrAddExpenses);
 
- console.log(budgetDay);
+console.log(budgetDay);
