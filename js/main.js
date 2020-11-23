@@ -1,10 +1,12 @@
+"use strict";
+
 let money = 500,
     income = 'стипендия',
     addExpenses = 'Учеба, Проездной, Коммуналка',
     deposit = true,
     mission = 10000,
     period = 6,
-    budgetDay = money / 30;
+    budgetDay = Math.floor(money / 30);
 
 console.log(typeof money);
 console.log(typeof income);
@@ -21,16 +23,21 @@ console.log(lowAddExpenses);
 console.log(arrAddExpenses);
 
 
+//Задание 3
+
+//Задаем вопросы пользователю
+
 money = +prompt("Ваш месячный доход?");
 addExpenses = prompt("Перечислите возможные расходы за рассчитываемый период через запятую");
 deposit = confirm("Есть ли у вас депозит в банке?");
 
-expenses1 = prompt("Введите обязательную статью расходов");
-cost1 = +prompt("Во сколько это обойдется?");
+let expenses1 = prompt("Введите обязательную статью расходов");
+let cost1 = +prompt("Во сколько это обойдется?");
 
-expenses2 = prompt("Введите обязательную статью расходов");
-cost2 = +prompt("Во сколько это обойдется?");
+let expenses2 = prompt("Введите обязательную статью расходов");
+let cost2 = +prompt("Во сколько это обойдется?");
 
+//Производим расчеты и выводим в консоль
 
 let budgetMonth = money - cost1 - cost2;
 let getMisiion = Math.round(mission / budgetMonth);
@@ -49,4 +56,4 @@ if (budgetDay >= 1200) {
     console.log("К сожалению у вас уровень дохода ниже среднего")
 } else {
     console.log("Что-то пошло не так");
-}
+};
