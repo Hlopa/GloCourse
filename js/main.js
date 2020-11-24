@@ -8,9 +8,15 @@ let money = 500,
     period = 6,
     budgetDay = Math.floor(money / 30);
 
-console.log(typeof money);
-console.log(typeof income);
-console.log(typeof deposit);
+
+let showTypeOf = function (data) {
+    console.log(data, typeof (data))
+};
+
+showTypeOf(money);
+showTypeOf(income);
+showTypeOf(deposit);
+
 
 console.log(addExpenses.length);
 
@@ -23,7 +29,7 @@ console.log(lowAddExpenses);
 console.log(arrAddExpenses);
 
 
-//Задание 3
+
 
 //Задаем вопросы пользователю
 
@@ -48,12 +54,17 @@ console.log(`бюджет на день: ${budgetDay}`);
 console.log(`бюджет на месяц: ${budgetMonth}`);
 console.log(`достигнете цели за ${getMisiion} месяцев`);
 
-if (budgetDay >= 1200) {
-    console.log("У вас высокий уровень дохода")
-} else if (budgetDay >= 600 && budgetDay < 1200) {
-    console.log("У вас средний уровень дохода")
-} else if (budgetDay < 600 && budgetDay >= 0) {
-    console.log("К сожалению у вас уровень дохода ниже среднего")
-} else {
-    console.log("Что-то пошло не так");
-};
+
+let getStatusIncome = function () {
+    if (budgetDay >= 1200) {
+        return ("У вас высокий уровень дохода")
+    } else if (budgetDay >= 600 && budgetDay < 1200) {
+        return ("У вас средний уровень дохода")
+    } else if (budgetDay < 600 && budgetDay >= 0) {
+        return ("К сожалению у вас уровень дохода ниже среднего")
+    } else {
+        return ("Что-то пошло не так");
+    }
+}
+
+console.log(getStatusIncome());
