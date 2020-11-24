@@ -9,6 +9,8 @@ let money = 500,
     budgetDay = Math.floor(money / 30);
 
 
+//Typeof function   
+
 let showTypeOf = function (data) {
     console.log(data, typeof (data))
 };
@@ -16,19 +18,6 @@ let showTypeOf = function (data) {
 showTypeOf(money);
 showTypeOf(income);
 showTypeOf(deposit);
-
-
-console.log(addExpenses.length);
-
-console.log(`Период равен ${period} месяцам`);
-console.log(`Цель заработать ${mission} рублей`);
-
-let lowAddExpenses = addExpenses.toLowerCase();
-let arrAddExpenses = lowAddExpenses.split(", ");
-console.log(lowAddExpenses);
-console.log(arrAddExpenses);
-
-
 
 
 //Задаем вопросы пользователю
@@ -43,16 +32,25 @@ let cost1 = +prompt("Во сколько это обойдется?");
 let expenses2 = prompt("Введите обязательную статью расходов");
 let cost2 = +prompt("Во сколько это обойдется?");
 
-//Производим расчеты и выводим в консоль
 
-let budgetMonth = money - cost1 - cost2;
-let getMisiion = Math.round(mission / budgetMonth);
 
-budgetDay = Math.floor(budgetMonth / 30);
+//Функции для расчетов
 
-console.log(`бюджет на день: ${budgetDay}`);
-console.log(`бюджет на месяц: ${budgetMonth}`);
-console.log(`достигнете цели за ${getMisiion} месяцев`);
+function getExpensesMonth() {                   
+    return cost1 + cost2;
+};
+
+function getAccumulatedMonth() {                     
+    return money - getExpensesMonth()
+};
+
+let accumulatedMonth = getAccumulatedMonth();
+
+function getTargetMonth() {
+    return Math.floor(mission / accumulatedMonth);
+};
+
+budgetDay = Math.floor(accumulatedMonth / 30);
 
 
 let getStatusIncome = function () {
@@ -67,4 +65,13 @@ let getStatusIncome = function () {
     }
 }
 
+
+//Выводим в консоль
+
+console.log(`Цель - заработать ${mission} рублей за ${period} месяцев`);
+console.log(`Возможные расходы за месяц: ${addExpenses}`);
+console.log(`Обязательные расходы расходы за месяц: ${getExpensesMonth()} рублей`);
+console.log(`Бюджет на месяц: ${accumulatedMonth}`);
+console.log(`Бюджет на день: ${budgetDay} рублей`);
+console.log(`достигнете цели за ${getTargetMonth()} месяцев`);
 console.log(getStatusIncome());
