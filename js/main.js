@@ -18,10 +18,12 @@ let expenses = [];
 //Функции для расчетов
 
 let start = function () {
-    money = prompt("Ваш месячный доход?");
-    while (!isNumber(money)) {
-        money = prompt("Ваш месячный доход?");
+    let moneyStr;
+    do {
+        moneyStr = prompt("Ваш месячный доход?");
+        money = +moneyStr;
     }
+    while (!isNumber(moneyStr));
 }
 
 start();
@@ -31,7 +33,11 @@ function getExpensesMonth() {
 
     for (let i = 0; i < 2; i++) {
         expenses[i] = prompt("Введите обязательную статью расходов");
-        sum += +prompt("Во сколько это обойдется?");
+        let cost = prompt("Во сколько это обойдется?");
+        while (!isNumber(cost)) {
+            cost = prompt("Во сколько это обойдется?")
+        }
+        sum += +cost;
     }
 
     return sum;
@@ -46,9 +52,24 @@ function getAccumulatedMonth() {
 
 let accumulatedMonth = getAccumulatedMonth();
 
+
 function getTargetMonth() {
     return Math.floor(mission / accumulatedMonth);
 };
+
+
+let targetMonth = getTargetMonth();
+
+function returnTargetMonth() {
+    let result = '';
+    if (targetMonth >= 0) {
+        result = `достигнете цели за ${targetMonth} месяцев`
+    } else {
+        result = `цель не будет достигнута`
+    }
+    return result
+};
+
 
 let budgetDay = Math.floor(accumulatedMonth / 30);
 
@@ -66,6 +87,7 @@ let getStatusIncome = function () {
 }
 
 
+
 let showTypeOf = function (data) {
     console.log(data, typeof (data))
 };
@@ -81,7 +103,7 @@ showTypeOf(deposit);
 console.log(`Цель - заработать ${mission} рублей за ${period} месяцев`);
 console.log(`Возможные расходы за месяц: ${addExpenses}`);
 console.log(`Обязательные расходы расходы за месяц: ${expensesMonth} рублей`);
-console.log(`Бюджет на месяц: ${accumulatedMonth}`);
+console.log(`Бюджет на месяц: ${accumulatedMonth} рублей`);
 console.log(`Бюджет на день: ${budgetDay} рублей`);
-console.log(`достигнете цели за ${getTargetMonth()} месяцев`);
+console.log(returnTargetMonth());
 console.log(getStatusIncome());
