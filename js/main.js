@@ -20,7 +20,7 @@ start();
 let appData = {
     income: {},
     addIncome: [],
-    expenses: [],
+    expenses: {},
     addExpenses: [],
     deposit: false,
     mission: 50000,
@@ -31,22 +31,24 @@ let appData = {
     expensesMonth: 0,
     asking: function () {
         let addExpenses = prompt("Перечислите возможные расходы за рассчитываемый период через запятую");
-        appData.addExpenses = addExpense.toLocaleLowerCase().split(',');
+        appData.addExpenses = addExpenses.toLocaleLowerCase().split(',');
         appData.deposit = confirm("Есть ли у вас депозит в банке?");
+        for (let i = 0; i < 2; i++) {
+            let answer = prompt("Введите обязательную статью расходов");
+            appData.expenses[answer] = prompt("Во сколько это обойдется?");
+            while (!isNumber(appData.expenses[answer])) {
+                appData.expenses[answer] = prompt("Во сколько это обойдется?")
+            }
+        }
     },
     getExpensesMonth: function () {
         let sum = 0;
-
-        for (let i = 0; i < 2; i++) {
-            appData.expenses[i] = prompt("Введите обязательную статью расходов");
-            let cost = prompt("Во сколько это обойдется?");
-            while (!isNumber(cost)) {
-                cost = prompt("Во сколько это обойдется?")
-            }
-            sum += +cost;
+        for (let key in appData.expenses) {
+            sum += +appData.expenses[key]
         }
         return sum;
     },
+
     getAccumulatedMonth: function () {
         return money - appData.expensesMonth
     },
@@ -81,7 +83,7 @@ let appData = {
     }
 };
 
-
+appData.asking();
 
 
 let expensesMonth = appData.getExpensesMonth();
@@ -92,15 +94,7 @@ let targetMonth = appData.getTargetMonth();
 
 //Выводим в консоль
 
-console.log(`Цель - заработать ${appData.mission} руб за ${appData.period} месяцев`);
-console.log(`Ваш доход в месяц ${money} руб`);
-console.log(`Возможные расходы за месяц: ${appData.addExpenses}`);
+console.log(`Ваш доход в месяц ${appData.budget} руб`);
 console.log(`Обязательные расходы расходы за месяц: ${expensesMonth} руб`);
-
-if (targetMonth !== Infinity && targetMonth >= 0) {
-    console.log(`Бюджет на месяц: ${accumulatedMonth} рублей`);
-    console.log(`Бюджет на день: ${appData.budgetDay} руб`);
-}
-
 console.log(appData.returnTargetMonth());
-console.log(appData.getStatusIncome());
+
