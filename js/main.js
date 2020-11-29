@@ -98,3 +98,15 @@ console.log(`Ваш доход в месяц ${appData.budget} руб`);
 console.log(`Обязательные расходы расходы за месяц: ${expensesMonth} руб`);
 console.log(appData.returnTargetMonth());
 
+
+//Выводим в консоль все данные из appData
+
+function getDataInfo() {
+    let str = 'Наша программа включает в себя данные: ';
+    for (let key in appData) {
+        str += `${key} : ${appData[key]}, `;
+    }
+    return str
+}
+
+console.log(getDataInfo());
