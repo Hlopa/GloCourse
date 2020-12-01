@@ -1,5 +1,48 @@
 "use strict";
 
+//получаю элементы со страницы
+
+const data = document.querySelector('.data');
+
+//Доходы
+const salaryMonth = data.querySelector('.salary-amount');
+
+const income = data.querySelector('.income-title');
+const incomeNumber = data.querySelector('.income-amount');
+const btnIncome = document.getElementsByTagName('button')[0];
+
+const incomeAdd = data.querySelectorAll('.additional_income-item');
+
+//Расходы
+
+const expenses = data.querySelector('.expenses-title');
+const expensesNumber = data.querySelector('.expenses-amount');
+const btnExpenses = document.getElementsByTagName('button')[1];
+
+const expensesAdd = data.querySelector('.additional_expenses-item');
+
+//Прочая инфа
+
+const checkboxDeposit = data.querySelector('#deposit-check');
+const targerNumber = data.querySelector('.target-amount')
+const periodRange = data.querySelector('.period-select');
+
+//Результаты
+
+const resBudgetMonth = document.getElementsByClassName('budget_month-value');
+const resBudgetDay = document.getElementsByClassName('budget_month-value');
+const resExpensMonth = document.getElementsByClassName('expenses_month-value');
+const resIncomeAdd = document.getElementsByClassName('additional_income-value');
+const resExpensesAdd = document.getElementsByClassName('additional_expenses-value');
+const resIncomePeriod = document.getElementsByClassName('income_period-value');
+const resTargetMonth = document.getElementsByClassName('target_month-value');
+
+//кнопка рассчитать
+
+const btnStart = document.getElementById('start');
+
+
+
 let isNumber = function (n) {
     return !isNaN(parseFloat(n)) && isFinite(n);
 }
