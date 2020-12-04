@@ -70,6 +70,8 @@ let appData = {
     },
     addExpensesBlock: function () { 
         let cloneExpensesItem = expensesItems[0].cloneNode(true);
+        cloneExpensesItem.querySelector('.expenses-title').value = '';
+        cloneExpensesItem.querySelector('.expenses-amount').value = '';
         expensesPlus.insertAdjacentElement('beforebegin', cloneExpensesItem);
         expensesItems = document.querySelectorAll('.expenses-items');
 
@@ -79,6 +81,8 @@ let appData = {
     },
     addIncomeBlock: function(){
         let cloneIncomeItem = incomeItems[0].cloneNode(true);
+        cloneIncomeItem.querySelector('.income-title').value = '';
+        cloneIncomeItem.querySelector('.income-amount').value = '';
         incomePlus.insertAdjacentElement('beforebegin', cloneIncomeItem);
         incomeItems = document.querySelectorAll('.income-items');
 
@@ -203,6 +207,57 @@ function disBtn(){
 
 disBtn();
 
+//Можно вводить только цифры
+
+
+salaryAmount.addEventListener('input', function(e){
+    this.value = this.value.replace(/[^0-9\.]/g, '');
+});
+
+targetAmount.addEventListener('input', function(e){
+    this.value = this.value.replace(/[^0-9\.]/g, '');
+});
+
+document.querySelectorAll('.income-amount').forEach(function(item){
+    item.addEventListener('input', function(e){
+        this.value = this.value.replace(/[^0-9\.]/g, '');
+    });
+});
+
+document.querySelectorAll('.expenses-amount').forEach(function(item){
+    item.addEventListener('input', function(e){
+        this.value = this.value.replace(/[^0-9\.]/g, '');
+    });
+})
+
+//Можно вводить только буквы
+
+additionalExpensesItem.addEventListener('input', function(e){
+    this.value = this.value.replace(/[^а-яА-Я\., ]/g, '');
+});
+
+
+document.querySelectorAll('.income-title').forEach(function(item){
+    item.addEventListener('input', function(e){
+        this.value = this.value.replace(/[^а-яА-Я\., ]/g, '');
+    });
+});
+
+
+additionalIncomeItem.forEach(function(item){
+    item.addEventListener('input', function(e){
+        this.value = this.value.replace(/[^а-яА-Я\., ]/g, '');
+    });
+});
+
+document.querySelectorAll('.expenses-title').forEach(function(item){
+    item.addEventListener('input', function(e){
+        this.value = this.value.replace(/[^а-яА-Я\., ]/g, '');
+    });
+});
+
+
+//отслеживание клика
 
 start.addEventListener('click', appData.start);
 expensesPlus.addEventListener('click', appData.addExpensesBlock);
@@ -211,6 +266,9 @@ incomePlus.addEventListener('click', appData.addIncomeBlock);
 periodSelect.addEventListener('input', function(){
     periodAmount.textContent = periodSelect.value
 } );
+
+
+
 
 //Вывод в консоль возможных расходов в виде строки, с заглавной буквы
 
