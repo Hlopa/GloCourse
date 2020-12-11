@@ -52,8 +52,7 @@ class AppData {
         this.budget = +salaryAmount.value;
         this.getExpInc();
         this.getExpensesMonth();
-        this.getAddExpenses();
-        this.getAddIncome();
+        this.getAdd();
         this.getBudget();
         this.showResult();
     }
@@ -101,25 +100,19 @@ class AppData {
             this.incomeMonth += +this.income[key];
         }
     }
-
-    getAddExpenses() {
+    
+    getAdd(){
         const addExpenses = additionalExpensesItem.value.split(',');
-        addExpenses.forEach(item => {
-            console.log(typeof item, item.className)
-            if (item !== '') {
-                this.addExpenses.push(item);
+        const count = item =>{
+            if(typeof item === 'string' && item.trim()){
+                this.addExpenses.push(item.trim());
+             
+            } else if (typeof item === 'object' && item.value.trim()){
+                this.addIncome.push(item.value.trim())
             }
-        })
-    }
-
-    getAddIncome() {
-        additionalIncomeItem.forEach(item => {
-            console.log(typeof item, item.className)
-            let itemValue = item.value.trim();
-            if (itemValue !== '') {
-                this.addIncome.push(itemValue)
-            }
-        });
+        }
+        addExpenses.forEach(count);
+        additionalIncomeItem.forEach(count);
     }
 
     getExpensesMonth() {
@@ -156,6 +149,8 @@ class AppData {
         periodSelect.value = 1;
         periodAmount.textContent = periodSelect.value;
         depositCheck.checked = false;
+        this.addIncome = [];
+        this.addExpenses = [];
     }
 
     eventsListeners() {
